@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conversor de Pesos a Dólares</title>
+</head>
+<body>
+  <center><h1>CONVERSOR DE PESOS A DOLARES</h1></center>
+
+  <form id="conversion-form">
+    <label for="amount">Cantidad:</label>
+    <input type="number" id="amount" step="0.01" required>
+
+    <label for="currency">Tipo de conversión:</label>
+    <select id="currency" required>
+      <option value="pesos">Pesos a Dólares</option>
+      <option value="dolares">Dólares a Pesos</option>
+
+    </select>
+
+    <label for="exchange-rate">Valor de dólar:</label>
+    <input type="number" id="exchange-rate" step="0.01" required>
+
+    <button type="submit">Convertir</button>
+    <button type="button" onclick="resetForm()">Limpiar</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    function resetForm() {
+      document.getElementById("conversion-form").reset();
+      
+
+document.getElementById("result").innerHTML = "";
+    }
+
+    document.getElementById("conversion-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var amount = parseFloat(document.getElementById("amount").value);
+      var currency = document.getElementById("currency").value;
+      var exchangeRate = parseFloat(document.getElementById("exchange-rate").value);
+      var result;
+
+      if (currency === "pesos") {
+
+        result = amount / exchangeRate;
+        document.getElementById("result").innerHTML = amount + " pesos equivale a " + result.toFixed(2) + " dólares.";
+      } else {
+        result = amount * exchangeRate;
+        document.getElementById("result").innerHTML = amount + " dólares equivale a " + result.toFixed(2) + " pesos.";
+      }
+    });
+  </script>
+</body>
+</html>
